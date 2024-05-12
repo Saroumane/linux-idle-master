@@ -53,6 +53,7 @@ try:
     authData["steamparental"] = ""
     authData["hasPlayTime"] = "false"
     exec(open("./settings.txt").read(), authData)
+    authData["steamLoginSecure"] = subprocess.check_output(['node', 'getSteamLoginSecure.mjs']).decode('utf-8').strip()
     myProfileURL = "https://steamcommunity.com/profiles/" + authData["steamLoginSecure"][:17]
 except:
     logging.warning(Fore.RED + "Error loading config file" + Fore.RESET)
