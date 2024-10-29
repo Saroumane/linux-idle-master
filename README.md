@@ -1,5 +1,9 @@
 ## UPDATES
 
+2024-10-29
+* automated retrieval of SteamLoginSecure (with a chromium browser and @rookie-rs/api) => getSteamLoginSecure.mjs
+* removed dependancy : tk library and Xorg. (displaying the game is now done with Qt6 on Wayland)
+
 ### UPDATED v2.2 - COOKIES, PATH CHECKING, ERROR :: 2024-05-09
 
 VERSION 2.2 UPDATE
