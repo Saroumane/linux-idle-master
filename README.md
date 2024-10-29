@@ -1,8 +1,15 @@
 ## UPDATES
 
 2024-10-29
-* automated retrieval of SteamLoginSecure (with a chromium browser and @rookie-rs/api) => getSteamLoginSecure.mjs
-* removed dependancy : tk library and Xorg. (displaying the game is now done with Qt6 on Wayland)
+* automated retrieval of SteamLoginSecure (with a chromium browser and @rookie-rs/api library). Added dependency : nodejs
+* displaying the current game is now done with Qt6, it supports "pure Wayland" compositor. Removed dependencies : pillow/tk librairies and Xorg. Added dependency : python-pyqt6
+
+Example for Arch:
+
+`pacman -Suy python-beautifulsoup4 python-requests python-pyqt6 python-colorama`
+
+`npm install @rookie-rs/api`
+
 
 ### UPDATED v2.2 - COOKIES, PATH CHECKING, ERROR :: 2024-05-09
 
