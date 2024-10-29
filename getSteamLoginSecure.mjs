@@ -2,10 +2,9 @@
 import { chromium } from "@rookie-rs/api";
 import { exec } from "child_process";
 
-// open in browser steamcommunity.com/xxxx where xxxx is random, so as to force a refresh of the page and cookie
-const varRandom = Math.floor(Math.random()*10000);
-const myurl = `https://steamcommunity.com/${varRandom}`;
-exec(`xdg-open ${myurl}`)
+const myurl = `https://steamcommunity.com/}`;
+// script can freeze if chromium is not already started !
+exec(`chromium ${myurl} --force-reload-bypass-cache`)
 //console.log(myurl);
 
 // retrieve the cookie from the cookie file of chromium browser
