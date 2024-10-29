@@ -15,7 +15,7 @@ from colorama import init, Fore, Back, Style
 
 init()
 
-version = "v2.2"
+version = "v20241029"
 
 os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
 
@@ -209,7 +209,7 @@ except:
 
 userinfo = badgePageData.find("a", {"class": "user_avatar"})
 if not userinfo:
-    logging.warning(Fore.RED + "Invalid cookie data, cannot log in to Steam" + Fore.RESET)
+        logging.warning(Fore.RED + "Invalid cookie data, cannot log in to Steam. Try relog in steamcommunity.com and force refresh webpage" + Fore.RESET)
     input("Press Enter to continue...")
     sys.exit()
 
