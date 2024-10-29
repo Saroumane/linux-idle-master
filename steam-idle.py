@@ -4,16 +4,12 @@ import os
 import sys
 import platform
 import io
-from PIL import Image, ImageTk
+import sys
 from ctypes import CDLL
-try: #Python 2
-    from urllib2 import urlopen
-except ImportError: # Python 3
-    from urllib.request import urlopen
-try:
-    import Tkinter as tk
-except ImportError:
-    import tkinter as tk
+from PyQt6.QtCore import QUrl
+from PyQt6.QtGui import QPixmap
+from PyQt6.QtWidgets import QApplication, QLabel
+from PyQt6.QtNetwork import QNetworkAccessManager, QNetworkRequest, QNetworkReply
 
 def get_steam_api():
     if sys.platform.startswith('linux'):
@@ -30,38 +26,46 @@ def get_steam_api():
         sys.exit()
     return steam_api
 
+class MainWindow(QLabel):
+    def __init__(self):
+        super().__init__()
 
-def init_gui(str_app_id):
-    gui = tk.Tk()
-    gui.title('App ' + str_app_id)
-    gui.resizable(0, 0)
-    try:
-        url = "http://cdn.akamai.steamstatic.com/steam/apps/" + str_app_id + "/header_292x136.jpg"
-        image_bytes = urlopen(url).read()
-        data_stream = io.BytesIO(image_bytes)
-        pil_image = Image.open(data_stream)
-        tk_image = ImageTk.PhotoImage(pil_image)
-        label = tk.Label(gui, image = tk_image)
-        label.image = tk_image
-    except:
-        label = tk.Label(gui, text = "Couldn't load image")
-        
-    label.pack()
-    return gui
-    
-if __name__ == '__main__':
+        self.manager = QNetworkAccessManager()
+        self.manager.finished.connect(self.handle_response)
+
+        url = QUrl("http://cdn.akamai.steamstatic.com/steam/apps/" + str_app_id + "/header_292x136.jpg")
+        request = QNetworkRequest(url)
+        self.manager.get(request)
+
+    def handle_response(self, reply):
+        if reply.error() != QNetworkReply.error:
+            pixmap = QPixmap()
+            pixmap.loadFromData(reply.readAll())
+            self.setPixmap(pixmap)
+            self.setFixedSize(292, 136)
+            self.setWindowTitle('App ' + str_app_id);
+        else:
+            print("Error loading image:", reply.errorString())
+
+if __name__ == "__main__":
     if len(sys.argv) != 2:
         print("Wrong number of arguments")
         sys.exit()
-        
+
     str_app_id = sys.argv[1]
-    
+
     os.environ["SteamAppId"] = str_app_id
     try:
         get_steam_api().SteamAPI_Init()
     except:
         print("Couldn't initialize Steam API")
         sys.exit()
-        
-    gui = init_gui(str_app_id)
-    gui.mainloop()
+
+    app = QApplication(sys.argv)
+    window = MainWindow()
+    window.show()
+    sys.exit(app.exec())
+
+
+
+
