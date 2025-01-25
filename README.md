@@ -7,9 +7,8 @@
 Available in AUR, example for Arch Linux :
 `yay -Suy dotool`
 
-
 2024-10-29
-* automated retrieval of SteamLoginSecure (with a chromium browser and @rookie-rs/api library). Added dependency : nodejs
+* automated retrieval of SteamLoginSecure (with a chromium browser and @rookie-rs/api library). Added dependencies : nodejs chromium
 * displaying the current game is now done with Qt6, it supports "pure Wayland" compositor. Removed dependencies : pillow/tk librairies and Xorg. Added dependency : python-pyqt6
 
 Example for Arch:
@@ -18,6 +17,7 @@ Example for Arch:
 
 `npm install @rookie-rs/api`
 
+`yay -Suy ungoogled-chromium-bin`
 
 ### UPDATED v2.2 - COOKIES, PATH CHECKING, ERROR :: 2024-05-09
 
