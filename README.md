@@ -1,5 +1,13 @@
 ## UPDATES
 
+2025-01-25
+* retrieving a fresh cookie (on steamcommunity.com) is now fully automated thanks to dotool (It triggers a Hard Reload)
+* added dependency : dotool
+
+Available in AUR, example for Arch Linux :
+`yay -Suy dotool`
+
+
 2024-10-29
 * automated retrieval of SteamLoginSecure (with a chromium browser and @rookie-rs/api library). Added dependency : nodejs
 * displaying the current game is now done with Qt6, it supports "pure Wayland" compositor. Removed dependencies : pillow/tk librairies and Xorg. Added dependency : python-pyqt6
