@@ -209,7 +209,7 @@ except:
 
 userinfo = badgePageData.find("a", {"class": "user_avatar"})
 if not userinfo:
-        logging.warning(Fore.RED + "Invalid cookie data, cannot log in to Steam. Try relog in steamcommunity.com and force refresh webpage" + Fore.RESET)
+    logging.warning(Fore.RED + "Invalid cookie data, cannot log in to Steam. Try relog in steamcommunity.com and force refresh webpage" + Fore.RESET)
     input("Press Enter to continue...")
     sys.exit()
 

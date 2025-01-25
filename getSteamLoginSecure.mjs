@@ -2,13 +2,16 @@
 import { chromium } from "@rookie-rs/api";
 import { exec } from "child_process";
 
-const myurl = `https://steamcommunity.com/}`;
 // script can freeze if chromium is not already started !
-exec(`chromium ${myurl} --force-reload-bypass-cache`)
-//console.log(myurl);
+const myurl = `https://steamcommunity.com/`;
+
+// open steamcommunity.com, trigger a Hard Reload to refresh cookies, close window
+// to install dotool : $ yay -Suy dotool
+exec(`chromium --app=${myurl} && (echo key ctrl+shift+R | dotool) & sleep 3 && (echo key ctrl+W | dotool)`)
 
 // retrieve the cookie from the cookie file of chromium browser
 const cookies = chromium(["steamcommunity.com"]);
+
 
 // extract the steamLoginSecure value
 function findElement(arr, propName, propValue) {
@@ -20,3 +23,4 @@ var x = findElement(cookies, "name", "steamLoginSecure");
 
 // output the value
 console.log(x["value"]);
+
