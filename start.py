@@ -15,7 +15,7 @@ from colorama import init, Fore, Back, Style
 
 init()
 
-version = "v20241029"
+version = "v20250125"
 
 os.chdir(os.path.abspath(os.path.dirname(sys.argv[0])))
 
